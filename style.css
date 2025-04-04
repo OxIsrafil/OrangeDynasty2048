@@ -1,0 +1,140 @@
+:root {
+  --tile-size: 90px; /* Tile size on desktop */
+  --tile-margin: 10px; /* Margin/padding on desktop */
+  --grid-size: calc(4 * var(--tile-size) + 3 * var(--tile-margin) + 2 * var(--tile-margin));
+  --background-image: url('images/background.png');
+}
+
+@media (max-width: 600px) {
+  :root {
+    --tile-size: 70px; /* Tile size on mobile */
+    --tile-margin: 5px; /* Margin/padding on mobile */
+    --grid-size: calc(4 * var(--tile-size) + 3 * var(--tile-margin) + 2 * var(--tile-margin));
+  }
+}
+
+body {
+  background-color: #fff5e6;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.game-container {
+  width: var(--grid-size);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  width: var(--grid-size);
+  margin-bottom: 10px;
+}
+
+.score, .best-score {
+  background-color: #ff9933;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.new-game {
+  background-color: #ff6600;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.new-game:hover {
+  background-color: #e65c00;
+}
+
+.grid-container {
+  position: relative;
+  width: var(--grid-size);
+  height: var(--grid-size);
+  background: var(--background-image) no-repeat center center;
+  background-size: cover;
+  margin: 0 auto;
+  padding: var(--tile-margin); /* Add padding to the grid container */
+  box-sizing: border-box; /* Ensure padding doesn't increase size */
+}
+
+.tile {
+  position: absolute;
+  width: var(--tile-size);
+  height: var(--tile-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px #000000;
+  transition: left 0.2s, top 0.2s;
+  box-sizing: border-box;
+}
+
+.tile-2 { background-color: #FFE5B4; }
+.tile-4 { background-color: #FFD699; }
+.tile-8 { background-color: #FFC878; }
+.tile-16 { background-color: #FFA94D; }
+.tile-32 { background-color: #FF9933; }
+.tile-64 { background-color: #FF7F00; }
+.tile-128 { background-color: #E67300; }
+.tile-256 { background-color: #CC6600; }
+.tile-512 { background-color: #B35900; }
+.tile-1024 { background-color: #994D00; }
+.tile-2048 { background-color: #803F00; }
+
+.tile-new {
+  animation: appear 0.2s;
+}
+
+.tile-merged {
+  animation: pop 0.2s;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pop {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Updated tile positions with padding offset */
+.tile-position-0-0 { left: var(--tile-margin); top: var(--tile-margin); }
+.tile-position-0-1 { left: calc(var(--tile-margin) + 1 * (var(--tile-size) + var(--tile-margin))); top: var(--tile-margin); }
+.tile-position-0-2 { left: calc(var(--tile-margin) + 2 * (var(--tile-size) + var(--tile-margin))); top: var(--tile-margin); }
+.tile-position-0-3 { left: calc(var(--tile-margin) + 3 * (var(--tile-size) + var(--tile-margin))); top: var(--tile-margin); }
+.tile-position-1-0 { left: var(--tile-margin); top: calc(var(--tile-margin) + 1 * (var(--tile-size) + var(--tile-margin))); }
+.tile-position-1-1 { left: calc(var(--tile-margin) + 1 * (var(--tile-size) + var(--tile-margin))); top: calc(var(--tile-margin) + 1 * (var(--tile-size) + var(--tile-margin))); }
+.tile-position-1-2 { left: calc(var(--tile-margin) + 2 * (var(--tile-size) + var(--tile-margin))); top: calc(var(--tile-margin) + 1 * (var(--tile-size) + var(--tile-margin))); }
+.tile-position-1-3 { left: calc(var(--tile-margin) + 3 * (var(--tile-size) + var(--tile-margin))); top: calc(var(--tile-margin) + 1 * (var(--tile-size) + var(--tile-margin))); }
+.tile-position-2-0 { left: var(--tile-margin); top: calc(var(--tile-margin) + 2 * (var(--tile-size) + var(--tile-margin))); }
+.tile-position-2-1 { left: calc(var(--tile-margin) + 1 * (var(--tile-size) + var(--tile-margin))); top: calc(var(--tile-margin) + 2 * (var(--tile-size) + var(--tile-margin))); }
+.tile-position-2-2 { left: calc(var(--tile-margin) + 2 * (var(--tile-size) + var(--tile-margin))); top: calc(var(--tile-margin) + 2 * (var(--tile-size) + var(--tile-margin))); }
+.tile-position-2-3 { left: calc(var(--tile-margin) + 3 * (var(--tile-size) + var(--tile-margin))); top: calc(var(--tile-margin) + 2 * (var(--tile-size) + var(--tile-margin))); }
+.tile-position-3-0 { left: var(--tile-margin); top: calc(var(--tile-margin) + 3 * (var(--tile-size) + var(--tile-margin))); }
+.tile-position-3-1 { left: calc(var(--tile-margin) + 1 * (var(--tile-size) + var(--tile-margin))); top: calc(var(--tile-margin) + 3 * (var(--tile-size) + var(--tile-margin))); }
+.tile-position-3-2 { left: calc(var(--tile-margin) + 2 * (var(--tile-size) + var(--tile-margin))); top: calc(var(--tile-margin) + 3 * (var(--tile-size) + var(--tile-margin))); }
+.tile-position-3-3 { left: calc(var(--tile-margin) + 3 * (var(--tile-size) + var(--tile-margin))); top: calc(var(--tile-margin) + 3 * (var(--tile-size) + var(--tile-margin))); }
